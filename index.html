@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PharmaCare - Nhà thuốc trực tuyến</title>
+    <meta
+      name="description"
+      content="PharmaCare - Nhà thuốc trực tuyến uy tín, cung cấp thuốc chính hãng, giao hàng nhanh 2H"
+    />
+    <meta
+      name="keywords"
+      content="nhà thuốc, thuốc online, dược phẩm, thực phẩm chức năng"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Đang tải...</p>
+      </div>
+    </div>
+
+    <header class="header" id="mainHeader">
+      <div class="header-top">
+        <div class="container">
+          <div class="header-top-content">
+            <div class="contact-info">
+              <span class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>Hotline: 1900-1234</span>
+              </span>
+              <span class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>support@pharmacare.vn</span>
+              </span>
+            </div>
+            <div class="shipping-info">
+              <i class="fas fa-truck"></i>
+              <span>Miễn phí giao hàng đơn từ 300.000đ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="header-content">
+          <div class="logo-section">
+            <div class="logo-icon">
+              <i class="fas fa-pills"></i>
+            </div>
+            <div class="logo-text">
+              <h1>PharmaCare</h1>
+              <span>Nhà thuốc trực tuyến</span>
+            </div>
+          </div>
+
+          <div class="search-section">
+            <div class="search-bar">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                type="text"
+                placeholder="Tìm kiếm thuốc, thực phẩm chức năng..."
+                id="searchInput"
+                autocomplete="off"
+              />
+              <button class="search-btn" onclick="searchProducts()">
+                <span>Tìm</span>
+              </button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+          </div>
+
+          <div class="header-actions">
+            <button class="action-btn notification-btn" title="Thông báo">
+              <i class="fas fa-bell"></i>
+              <span class="badge">!</span>
+            </button>
+            <button id="btn-tk" class="action-btn user-btn" title="Tài khoản">
+              <i class="fas fa-user"></i>
+            </button>
+            <button
+              class="action-btn cart-btn"
+              onclick="openModal('cartModal')"
+              title="Giỏ hàng"
+            >
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <div class="container">
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link active">Trang chủ</a></li>
+            <li class="dropdown">
+              <a href="#" class="nav-link dropdown-toggle">Sản phẩm</a>
+              <ul class="dropdown-menu">
+                <li><a href="thuoc.html">Thuốc</a></li>
+                <li>
+                  <a href="vitamin.html">Vitamin & Thực phẩm chức năng</a>
+                </li>
+                <li><a href="cham-soc-da.html">Chăm sóc da</a></li>
+                <li><a href="thiet-bi-y-te.html">Thiết bị y tế</a></li>
+                <li><a href="tre-em.html">Sản phẩm trẻ em</a></li>
+              </ul>
+            </li>
+            <li><a href="promotion.html" class="nav-link">Khuyến mãi</a></li>
+            <li><a href="contact.html" class="nav-link">Liên hệ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-background">
+        <div class="hero-overlay"></div>
+        <div class="floating-elements">
+          <div class="floating-element"></div>
+          <div class="floating-element"></div>
+          <div class="floating-element"></div>
+          <div class="floating-element"></div>
+          <div class="floating-element"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="trust-badge">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span>4.9/5 từ 50,000+ khách hàng</span>
+            </div>
+            <h1 class="hero-title">
+              <span class="gradient-text">Chăm sóc sức khỏe</span>
+              <span class="gradient-text">toàn diện</span>
+            </h1>
+            <p class="hero-subtitle">
+              Thuốc chính hãng - Giá tốt nhất - Giao hàng nhanh chóng
+            </p>
+            <div class="hero-buttons">
+              <button
+                id="btn-ms"
+                class="btn btn-primary btn-glow"
+                onclick="openModal1('muaModal')"
+              >
+                <span>Mua sắm ngay</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+              <button
+                id="btn-video"
+                class="btn btn-outline"
+                onclick="openModal2('videoModal')"
+              >
+                <span>Xem video</span>
+                <i class="fas fa-play"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-icon">
+              <i class="fas fa-hospital"></i>
+            </div>
+            <div class="stats-cards">
+              <div class="stat-card">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Khách hàng</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Sản phẩm</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-features">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-check"></i>
+            </div>
+            <div class="feature-text">
+              <h3>Thuốc Chính Hãng</h3>
+              <p>100% thuốc từ nhà sản xuất</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-truck-fast"></i>
+            </div>
+            <div class="feature-text">
+              <h3>Giao Hàng 2H</h3>
+              <p>Nhanh chóng & tiện lợi</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="feature-text">
+              <h3>Dược Sĩ Tư Vấn</h3>
+              <p>Miễn phí 24/7</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3><a href="index.html">PharmaCare</a></h3>
+            <p>
+              Nhà thuốc trực tuyến uy tín, cung cấp các sản phẩm chăm sóc sức
+              khỏe chất lượng cao.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Danh mục sản phẩm</h4>
+            <ul>
+              <li><a href="thuoc.html">Thuốc</a></li>
+              <li><a href="vitamin.html">Vitamin & Thực phẩm chức năng</a></li>
+              <li><a href="cham-soc-da.html">Chăm sóc da</a></li>
+              <li><a href="thiet-bi-y-te.html">Thiết bị y tế</a></li>
+              <li><a href="tre-em.html">Sản phẩm trẻ em</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Hỗ trợ khách hàng</h4>
+            <ul>
+              <li><a href="#">Hướng dẫn mua hàng</a></li>
+              <li><a href="#">Chính sách đổi trả</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Điều khoản sử dụng</a></li>
+              <li><a href="contact.html">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Thông tin liên hệ</h4>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1,
+              TP.HCM
+            </p>
+            <p><i class="fas fa-phone"></i> 1900-1234</p>
+            <p><i class="fas fa-envelope"></i> info@pharmacare.vn</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 PharmaCare. Tất cả quyền được bảo lưu.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/script.js"></script>
+    <script>
+      document.getElementById("btn-tk").onclick = function (e) {
+        e.preventDefault();
+        const user = localStorage.getItem("pharmacare_user");
+        if (user) {
+          window.location.href = "profile.html";
+        } else {
+          window.location.href = "login.html";
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập - PharmaCare</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/auth-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #181f2a;
+      }
+      .auth-2col {
+        display: flex;
+        min-height: 100vh;
+      }
+      .auth-left {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #181f2a;
+      }
+      .auth-form-box {
+        background: #232b3e;
+        border-radius: 18px;
+        box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
+        padding: 48px 40px;
+        min-width: 380px;
+        max-width: 420px;
+      }
+      .auth-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .auth-logo i {
+        font-size: 2.2rem;
+        color: #4f8cff;
+      }
+      .auth-logo .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #4f8cff;
+      }
+      .auth-logo .logo-tagline {
+        font-size: 1rem;
+        color: #b0b8c9;
+        font-weight: 500;
+      }
+      .auth-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .auth-desc {
+        color: #b0b8c9;
+        margin-bottom: 32px;
+      }
+      .auth-form label {
+        color: #b0b8c9;
+        font-weight: 600;
+      }
+      .auth-form input {
+        background: #20273a;
+        color: #fff;
+        border: 1px solid #2d3650;
+      }
+      .auth-btn {
+        background: linear-gradient(90deg, #4f8cff, #3e6be0);
+        font-weight: 700;
+      }
+      .auth-btn:hover {
+        background: linear-gradient(90deg, #3e6be0, #4f8cff);
+      }
+      .auth-link {
+        color: #b0b8c9;
+        margin-top: 18px;
+        text-align: center;
+      }
+      .auth-link a {
+        color: #4f8cff;
+        text-decoration: underline;
+      }
+      .auth-social {
+        display: flex;
+        gap: 16px;
+        margin: 18px 0 0 0;
+        justify-content: center;
+      }
+      .auth-social button {
+        background: #20273a;
+        color: #fff;
+        border: 1px solid #2d3650;
+        border-radius: 6px;
+        padding: 8px 18px;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .auth-social button:hover {
+        background: #232b3e;
+      }
+      .auth-right {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #4f8cff 0%, #3e6be0 100%);
+      }
+      .auth-info-box {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        padding: 48px 40px;
+        max-width: 420px;
+        color: #fff;
+      }
+      .auth-info-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      .auth-info-desc {
+        font-size: 1.1rem;
+        margin-bottom: 28px;
+      }
+      .auth-info-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 28px 0;
+      }
+      .auth-info-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        font-size: 1.05rem;
+      }
+      .auth-info-list i {
+        font-size: 1.2rem;
+        color: #ffeaa7;
+      }
+      .auth-testimonial {
+        background: rgba(255, 255, 255, 0.13);
+        border-radius: 10px;
+        padding: 18px 20px;
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+      .auth-testimonial-user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .auth-testimonial-user i {
+        font-size: 1.3rem;
+        color: #ffeaa7;
+      }
+      .auth-testimonial-user .name {
+        font-weight: 700;
+      }
+      .auth-testimonial-user .stars {
+        color: #ffeaa7;
+        font-size: 1rem;
+      }
+      @media (max-width: 900px) {
+        .auth-2col {
+          flex-direction: column;
+        }
+        .auth-right,
+        .auth-left {
+          flex: none;
+          width: 100%;
+          min-width: 0;
+        }
+        .auth-form-box,
+        .auth-info-box {
+          min-width: 0;
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-2col">
+      <div class="auth-left">
+        <div class="auth-form-box">
+          <div class="auth-logo">
+            <i class="fas fa-capsules"></i>
+            <div>
+              <div class="logo-text">PharmaCare</div>
+              <div class="logo-tagline">Nhà thuốc trực tuyến</div>
+            </div>
+          </div>
+          <div class="auth-title">Chào mừng trở lại!</div>
+          <div class="auth-desc">Đăng nhập để tiếp tục mua sắm</div>
+          <form id="loginForm" class="auth-form">
+            <div class="form-group">
+              <label for="loginUser">Email</label>
+              <input
+                type="text"
+                id="loginUser"
+                name="loginUser"
+                required
+                placeholder="Nhập email của bạn"
+                autocomplete="username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Mật khẩu</label>
+              <input
+                type="password"
+                id="loginPassword"
+                name="loginPassword"
+                required
+                placeholder="Nhập mật khẩu"
+                autocomplete="current-password"
+              />
+            </div>
+            <button type="submit" class="auth-btn">Đăng nhập</button>
+            <div id="loginError" class="auth-error"></div>
+            <div class="auth-link">
+              Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+            </div>
+          </form>
+          <div class="auth-social">
+            <button><i class="fab fa-google"></i> Google</button>
+            <button><i class="fab fa-facebook"></i> Facebook</button>
+          </div>
+        </div>
+      </div>
+      <div class="auth-right">
+        <div class="auth-info-box">
+          <div class="auth-info-title">Chăm sóc sức khỏe toàn diện</div>
+          <div class="auth-info-desc">
+            Thuốc chính hãng - Giá tốt nhất - Giao hàng nhanh chóng
+          </div>
+          <ul class="auth-info-list">
+            <li><i class="fas fa-shield-alt"></i> Thuốc chính hãng 100%</li>
+            <li><i class="fas fa-shipping-fast"></i> Giao hàng nhanh 2H</li>
+            <li><i class="fas fa-user-md"></i> Tư vấn dược sĩ miễn phí</li>
+          </ul>
+          <div class="auth-testimonial">
+            <div>
+              PharmaCare giúp tôi tiết kiệm thời gian và chi phí khi mua thuốc
+              cho gia đình.
+            </div>
+            <div class="auth-testimonial-user">
+              <i class="fas fa-user-circle"></i>
+              <span class="name">Nguyễn Thị Hương</span>
+              <span class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/auth.js"></script>
+  </body>
+</html>

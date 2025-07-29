@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập Admin - PharmaCare</title>
+    <link rel="stylesheet" href="css/auth-styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="auth-container">
+      <form id="adminLoginForm" class="auth-form">
+        <h2>Đăng nhập Quản trị</h2>
+        <div class="form-group">
+          <label for="username"
+            ><i class="fas fa-user"></i> Tên đăng nhập</label
+          >
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            autocomplete="username"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password"><i class="fas fa-lock"></i> Mật khẩu</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+        <button type="submit" class="auth-btn">Đăng nhập</button>
+        <div id="loginError" class="auth-error"></div>
+      </form>
+    </div>
+    <script src="js/auth.js"></script>
+  </body>
+</html>

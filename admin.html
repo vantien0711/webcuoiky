@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Quản Trị Admin - PharmaCare</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/auth-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        background: #f4f6fa;
+      }
+      .admin-layout {
+        display: flex;
+        min-height: 100vh;
+      }
+      .admin-sidebar {
+        width: 240px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        padding: 32px 0 0 0;
+        box-shadow: 2px 0 12px rgba(102, 126, 234, 0.08);
+      }
+      .admin-sidebar h2 {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 32px;
+        letter-spacing: 1px;
+      }
+      .admin-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .admin-menu li {
+        margin-bottom: 8px;
+      }
+      .admin-menu a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 12px 32px;
+        border-radius: 0 24px 24px 0;
+        transition: background 0.2s;
+        cursor: pointer;
+      }
+      .admin-menu a.active,
+      .admin-menu a:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: #ffeaa7;
+      }
+      .admin-main {
+        flex: 1;
+        padding: 40px 48px;
+        background: #f4f6fa;
+      }
+      .admin-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+      }
+      .admin-header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #333;
+      }
+      .admin-header .admin-user {
+        font-size: 1rem;
+        color: #667eea;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .admin-section {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(102, 126, 234, 0.06);
+        padding: 32px;
+        min-height: 300px;
+      }
+      .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 16px;
+      }
+      .admin-table th,
+      .admin-table td {
+        border: 1px solid #e0e0e0;
+        padding: 10px 12px;
+        text-align: left;
+      }
+      .admin-table th {
+        background: #f8f9fa;
+        font-weight: 700;
+      }
+      .admin-table td .action-btn {
+        margin-right: 8px;
+        padding: 4px 10px;
+        border: none;
+        border-radius: 6px;
+        background: #667eea;
+        color: #fff;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: background 0.2s;
+      }
+      .admin-table td .action-btn:last-child {
+        margin-right: 0;
+      }
+      .admin-table td .action-btn:hover {
+        background: #764ba2;
+      }
+      .add-btn {
+        background: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 18px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .add-btn:hover {
+        background: #388e3c;
+      }
+      @media (max-width: 900px) {
+        .admin-main {
+          padding: 20px 5px;
+        }
+        .admin-section {
+          padding: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <h2><i class="fas fa-cogs"></i> Admin</h2>
+        <ul class="admin-menu">
+          <li>
+            <a href="#" class="active" data-tab="products"
+              ><i class="fas fa-box"></i> Quản lý sản phẩm</a
+            >
+          </li>
+          <li>
+            <a href="#" data-tab="orders"
+              ><i class="fas fa-shopping-cart"></i> Quản lý đơn hàng</a
+            >
+          </li>
+          <li>
+            <a href="#" data-tab="accounts"
+              ><i class="fas fa-users"></i> Quản lý tài khoản</a
+            >
+          </li>
+          <li>
+            <a href="#" id="adminLogout"
+              ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+            >
+          </li>
+        </ul>
+      </aside>
+      <main class="admin-main">
+        <div class="admin-header">
+          <h1>Chào mừng, Admin!</h1>
+          <div class="admin-user">
+            <i class="fas fa-user-shield"></i>
+            <span id="adminUsername">admin</span>
+          </div>
+        </div>
+        <section class="admin-section" id="adminContent">
+          <!-- Nội dung động sẽ được render ở đây -->
+        </section>
+      </main>
+    </div>
+    <script>
+      // Hiển thị tên admin từ localStorage nếu có
+      const admin = JSON.parse(localStorage.getItem("pharmacare_admin"));
+      if (admin && admin.username) {
+        document.getElementById("adminUsername").textContent = admin.username;
+      }
+      // Đăng xuất
+      document.getElementById("adminLogout").onclick = function (e) {
+        e.preventDefault();
+        localStorage.removeItem("pharmacare_admin");
+        window.location.href = "admin-login.html";
+      };
+
+      // Dữ liệu mẫu
+      const sampleProducts = [
+        {
+          id: 1,
+          name: "Paracetamol 500mg",
+          price: 25000,
+          category: "Thuốc",
+          brand: "Sanofi",
+          stock: 100,
+          status: "Hiện",
+        },
+        {
+          id: 2,
+          name: "Ibuprofen 400mg",
+          price: 35000,
+          category: "Thuốc",
+          brand: "Pfizer",
+          stock: 80,
+          status: "Ẩn",
+        },
+        {
+          id: 3,
+          name: "Vitamin C 1000mg",
+          price: 40000,
+          category: "Vitamin",
+          brand: "Blackmores",
+          stock: 120,
+          status: "Hiện",
+        },
+      ];
+      const sampleOrders = [
+        {
+          id: 101,
+          customer: "Nguyễn Văn A",
+          total: 350000,
+          date: "2024-06-01",
+          status: "Chờ xác nhận",
+        },
+        {
+          id: 102,
+          customer: "Trần Thị B",
+          total: 210000,
+          date: "2024-06-02",
+          status: "Đã giao",
+        },
+        {
+          id: 103,
+          customer: "Lê Văn C",
+          total: 120000,
+          date: "2024-06-03",
+          status: "Đã hủy",
+        },
+      ];
+      const sampleAccounts = [
+        {
+          id: 1,
+          username: "admin",
+          email: "admin@pharmacare.vn",
+          role: "admin",
+          status: "Hoạt động",
+          created: "2024-06-01",
+        },
+        {
+          id: 2,
+          username: "user1",
+          email: "user1@gmail.com",
+          role: "user",
+          status: "Khóa",
+          created: "2024-06-02",
+        },
+      ];
+
+      // Render nội dung tab
+      function renderTab(tab) {
+        const content = document.getElementById("adminContent");
+        if (tab === "products") {
+          content.innerHTML = `
+          <h2>Quản lý sản phẩm</h2>
+          <button class="add-btn"><i class="fas fa-plus"></i> Thêm sản phẩm</button>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th><th>Tên sản phẩm</th><th>Giá</th><th>Danh mục</th><th>Thương hiệu</th><th>Số lượng</th><th>Trạng thái</th><th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${sampleProducts
+                .map(
+                  (p) => `
+                <tr>
+                  <td>${p.id}</td>
+                  <td>${p.name}</td>
+                  <td>${p.price.toLocaleString()}₫</td>
+                  <td>${p.category}</td>
+                  <td>${p.brand}</td>
+                  <td>${p.stock}</td>
+                  <td>${p.status}</td>
+                  <td>
+                    <button class="action-btn"><i class="fas fa-edit"></i> Sửa</button>
+                    <button class="action-btn"><i class="fas fa-trash"></i> Xóa</button>
+                  </td>
+                </tr>
+              `
+                )
+                .join("")}
+            </tbody>
+          </table>
+        `;
+        } else if (tab === "orders") {
+          content.innerHTML = `
+          <h2>Quản lý đơn hàng</h2>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Mã đơn</th><th>Khách hàng</th><th>Tổng tiền</th><th>Ngày tạo</th><th>Trạng thái</th><th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${sampleOrders
+                .map(
+                  (o) => `
+                <tr>
+                  <td>#${o.id}</td>
+                  <td>${o.customer}</td>
+                  <td>${o.total.toLocaleString()}₫</td>
+                  <td>${o.date}</td>
+                  <td>${o.status}</td>
+                  <td>
+                    <button class="action-btn"><i class="fas fa-eye"></i> Xem</button>
+                    <button class="action-btn"><i class="fas fa-sync"></i> Cập nhật</button>
+                  </td>
+                </tr>
+              `
+                )
+                .join("")}
+            </tbody>
+          </table>
+        `;
+        } else if (tab === "accounts") {
+          content.innerHTML = `
+          <h2>Quản lý tài khoản</h2>
+          <button class="add-btn"><i class="fas fa-user-plus"></i> Thêm tài khoản</button>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Trạng thái</th><th>Ngày tạo</th><th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${sampleAccounts
+                .map(
+                  (a) => `
+                <tr>
+                  <td>${a.id}</td>
+                  <td>${a.username}</td>
+                  <td>${a.email}</td>
+                  <td>${a.role}</td>
+                  <td>${a.status}</td>
+                  <td>${a.created}</td>
+                  <td>
+                    <button class="action-btn"><i class="fas fa-edit"></i> Sửa</button>
+                    <button class="action-btn"><i class="fas fa-user-lock"></i> Khóa</button>
+                    <button class="action-btn"><i class="fas fa-trash"></i> Xóa</button>
+                  </td>
+                </tr>
+              `
+                )
+                .join("")}
+            </tbody>
+          </table>
+        `;
+        }
+      }
+
+      // Xử lý chuyển tab
+      document.querySelectorAll(".admin-menu a[data-tab]").forEach((link) => {
+        link.onclick = function (e) {
+          e.preventDefault();
+          document
+            .querySelectorAll(".admin-menu a")
+            .forEach((a) => a.classList.remove("active"));
+          this.classList.add("active");
+          renderTab(this.dataset.tab);
+        };
+      });
+      // Mặc định hiển thị tab sản phẩm
+      renderTab("products");
+    </script>
+  </body>
+</html>
